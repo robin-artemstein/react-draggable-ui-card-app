@@ -1,0 +1,10 @@
+@import "tailwindcss";
+/* Force selector-driven variant resolution. 
+  This acts as a definitive override if Tailwind tries to default to system media queries.
+*/
+@variant dark (&:where(.dark, .dark *));
+
+body {
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
