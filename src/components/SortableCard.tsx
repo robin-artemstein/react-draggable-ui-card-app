@@ -32,14 +32,12 @@ export default function SortableCard({ card }: SortableCardProps) {
       }`}
     >
       {/* Top Left Area arranged inside a 2-column grid system */}
-      <div className="grid grid-cols-[auto_1fr] gap-3 items-start mb-4">
+      <div {...attributes} {...listeners} title="Drag title element to reorder card" className="grid grid-cols-[auto_1fr] gap-3 items-start mb-4">
         
         {/* Column 1: Dollar Sign SVG configured exclusively as the Drag Trigger Handle */}
         <div
-          {...attributes}
-          {...listeners}
-          className="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 cursor-grab active:cursor-grabbing hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          title="Drag icon element to reorder card"
+          className="cursor-grab active:cursor-grabbing  p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          title=""
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +56,7 @@ export default function SortableCard({ card }: SortableCardProps) {
         </div>
 
         {/* Column 2: Title Block Text */}
-        <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 pt-1.5 truncate">
+        <h3 className="cursor-grab active:cursor-grabbing  text-lg font-semibold text-slate-800 dark:text-slate-100 pt-1.5 truncate">
           {card.title}
         </h3>
       </div>
