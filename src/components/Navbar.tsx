@@ -1,4 +1,4 @@
-import LightModeIcon from "../components/LightModeIcon";
+import LightModeIcon2 from "../components/LightModeIcon2";
 import DarkModeIcon from "../components/DarkModeIcon";
 
 interface NavbarProps {
@@ -24,7 +24,7 @@ export default function Navbar({ isDarkMode, onToggleTheme }: NavbarProps) {
         aria-label="Toggle Theme Mode"
       >
         {isDarkMode ? (
-          <span className="flex items-center gap-2"><LightModeIcon /></span>
+          <span className="flex items-center gap-2"><LightModeIcon2 /></span>
         ) : (
           <span className="flex items-center gap-2"><DarkModeIcon /></span>
         )}
