@@ -40,17 +40,11 @@ export default function SortableCard({ card }: SortableCardProps) {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="var(--icon-line)"
+            fill="var(--icon-colour)"
+            viewBox="0 0 25 25" 
             className="w-6 h-6"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-               d="M12 6v12m-3-2.818.879-.659c1.171-.879 3.07-.879 4.242 0 1.172.879 1.172 2.303 0 3.182C12.95 21.58 10.05 21.58 8.879 20.7M15 8.818l-.879.659c-1.171.879-3.07.879-4.242 0-1.172-.879-1.172-2.303 0-3.182C11.05 5.42 13.95 5.42 15.121 6.3"
-            />
+            <path d="M12 2c0 0-3 0-4 3-1-3-4-3-4-3-2.2 0-4 1.8-4 4 0 4.1 8 9 8 9s8-5 8-9c0-2.2-1.8-4-4-4z"></path>
           </svg>
         </div>
 

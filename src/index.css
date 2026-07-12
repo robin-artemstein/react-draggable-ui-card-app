@@ -2,15 +2,17 @@
 /* Force selector-driven variant resolution. 
   This acts as a definitive override if Tailwind tries to default to system media queries.
 */
-@variant dark (&:where(.dark, .dark *));
+/* override the dark variant of Tailwind v4 to make it listen for the .dark category on html tags. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 /* The style for SVG-based icons and charts in both of the light and dark mode. */
 @layer base {
   :root {
-    --icon-line: theme('colors.black');
+    --icon-colour: theme('colors.black');
   }
   .dark {
-    --icon-line: theme('colors.white');
+    --icon-colour: theme('colors.white');
   }
 }
 
