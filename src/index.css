@@ -4,6 +4,16 @@
 */
 @variant dark (&:where(.dark, .dark *));
 
+/* The style for SVG-based icons and charts in both of the light and dark mode. */
+@layer base {
+  :root {
+    --icon-line: theme('colors.black');
+  }
+  .dark {
+    --icon-line: theme('colors.white');
+  }
+}
+
 body {
   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease;

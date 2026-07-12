@@ -36,15 +36,14 @@ export default function SortableCard({ card }: SortableCardProps) {
         
         {/* Column 1: Dollar Sign SVG configured exclusively as the Drag Trigger Handle */}
         <div
-          className="cursor-grab active:cursor-grabbing  p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          title=""
+          className="cursor-grab active:cursor-grabbing p-2"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth="2"
-            stroke="currentColor"
+            stroke="var(--icon-line)"
             className="w-6 h-6"
           >
             <path
