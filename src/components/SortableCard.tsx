@@ -27,7 +27,7 @@ export default function SortableCard({ card }: SortableCardProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`flex-1 min-w-[320px] max-w-[calc(33.333%-16px)] base-card-transition flex flex-col p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-200 ${
+      className={`flex-1 min-w-[320px] max-w-[calc(33.333%-16px)] base-card-transition flex flex-col p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200 transition-colors duration-300 ${
         isDragging ? 'opacity-40 border-indigo-500 ring-2 ring-indigo-500/20' : ''
       }`}
     >
@@ -49,13 +49,13 @@ export default function SortableCard({ card }: SortableCardProps) {
         </div>
 
         {/* Column 2: Title Block Text */}
-        <h3 className="cursor-grab active:cursor-grabbing  text-lg font-semibold text-slate-800 dark:text-slate-100 pt-1.5 truncate">
+        <h3 className="cursor-grab active:cursor-grabbing  text-lg font-semibold text-gray-800 dark:text-gray-100 pt-1.5 truncate transition-colors duration-300">
           {card.title}
         </h3>
       </div>
 
       {/* Description Context Row below */}
-      <div className="flex-1 overflow-y-auto max-h-[160px] text-sm text-slate-500 dark:text-slate-400 leading-relaxed pr-1">
+      <div className="flex-1 overflow-y-auto max-h-[160px] text-sm text-gray-500 dark:text-gray-400 leading-relaxed pr-1 transition-colors duration-300">
         {card.content}
       </div>
     </div>
