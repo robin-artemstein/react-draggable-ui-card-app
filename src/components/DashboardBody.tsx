@@ -1,51 +1,65 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   DndContext,
-  closestCenter,
-  KeyboardSensor,
+    closestCenter,
+    KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
-  type DragEndEvent
+  type DragEndEvent,
 } from '@dnd-kit/core';
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
-  rectSortingStrategy
+  rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import type { CardItem } from '../types';
-import SortableCard from './SortableCard';
 
-// Shared static text block requirement
-const LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultricies, nunc ut euismod malesuada, libero arcu dapibus nulla, eget commodo purus felis eu odio. In non finibus leo, vel malesuada ligula. Etiam eget suscipit ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. In ac urna vitae quam scelerisque pretium ut vitae elit. Etiam sed vulputate lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In euismod aliquet sem non blandit. Pellentesque accumsan ante ac orci porttitor, nec consequat enim convallis. Vivamus ac posuere nulla. Etiam et ultrices tortor. Sed et congue eros. Duis ante ex, lacinia non risus ut, consectetur ullamcorper lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc eget rhoncus est, mattis eleifend dolor.";
+// Import the 5 unique card components
+import { CardOne } from './CardOne';
+import { CardTwo } from './CardTwo';
+import { CardThree } from './CardThree';
+import { CardFour } from './CardFour';
+import { CardFive } from './CardFive';
 
-// Generate 15 unique UI card structures initial values
-const initialCards: CardItem[] = Array.from({ length: 15 }, (_, index) => ({
-  id: `card-${index + 1}`,
-  title: `Analytics Card ${index + 1}`,
-  content: LOREM_IPSUM,
-}));
+// Registry mapping string IDs to their separate unique components
+const CARD_REGISTRY: Record<string, React.FC<{ id: string }>> = {
+  'card-1': CardOne,
+  'card-2': CardTwo,
+  'card-3': CardThree,
+  'card-4': CardFour,
+  'card-5': CardFive,
+};
 
-export default function DashboardBody() {
-  const [cards, setCards] = useState<CardItem[]>(initialCards);
+export const DashboardBody: React.FC = () => {
+  // Track arrangement layout order
+  const [cardOrder, setCardOrder] = useState<string[]>([
+    'card-1',
+    'card-2',
+    'card-3',
+    'card-4',
+    'card-5',
+  ]);
 
-  // Configure sensors for drag activation detection
+  // Handle pointer and keyboard event sensor binding definitions
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5, // Prevents unintended drag events during subtle clicks
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
 
-  // Drag termination evaluation logic
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
-      setCards((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
+      setCardOrder((items) => {
+        const oldIndex = items.indexOf(active.id as string);
+        const newIndex = items.indexOf(over.id as string);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
@@ -57,14 +71,15 @@ export default function DashboardBody() {
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
     >
-      {/* Aligned via flex wrap layout option configuration container */}
-      <div className="flex flex-wrap gap-4 justify-start w-full">
-        <SortableContext items={cards.map(c => c.id)} strategy={rectSortingStrategy}>
-          {cards.map((card) => (
-            <SortableCard key={card.id} card={card} />
-          ))}
-        </SortableContext>
-      </div>
+      <SortableContext items={cardOrder} strategy={rectSortingStrategy}>
+        {/* Content Body Container with flex wrap rendering alignment */}
+        <div className="flex flex-wrap gap-6 p-8 justify-center max-w-[1400px] mx-auto">
+          {cardOrder.map((id) => {
+            const TargetCardComponent = CARD_REGISTRY[id];
+            return <TargetCardComponent key={id} id={id} />;
+          })}
+        </div>
+      </SortableContext>
     </DndContext>
   );
-}
+};

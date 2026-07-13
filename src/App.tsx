@@ -1,6 +1,6 @@
 
 import Navbar from './components/Navbar';
-import DashboardBody from './components/DashboardBody';
+import {DashboardBody} from './components/DashboardBody';
 
 export default function App() {
    
@@ -9,7 +9,7 @@ export default function App() {
       We control the 'dark' scope directly on this wrapper. When 'dark' is present, 
       all nested components will safely trigger their 'dark:' utility variations.
     */
-    <div className="min-h-screen transition-colors duration-300 bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50">
+    <div className="min-h-screen transition-colors duration-300 bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50">
       {/* Navigation Component */}
       <Navbar/>
       
